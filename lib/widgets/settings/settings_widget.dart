@@ -10,14 +10,6 @@ class SettingsWidget extends StatefulWidget {
 
 class _SettingsWidgetState extends State<SettingsWidget> {
   final design = Design();
-  final _shrekNameController = TextEditingController();
-  // String? _shrekName;
-
-  // void _setNewShrekName() {
-  //   setState(() {
-  //     _shrekName = _shrekNameController.text;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +18,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _TextFieldWidget(
-              design: design, shrekNameController: _shrekNameController),
+          _TextFieldWidget(design: design),
           ElevatedButton(
             onPressed: () =>
                 SettingsWidgetProvider.of(context)?.setAppBarText(),
@@ -44,7 +35,6 @@ class _TextFieldWidget extends StatelessWidget {
   const _TextFieldWidget({
     super.key,
     required this.design,
-    required TextEditingController shrekNameController,
   });
 
   final Design design;
@@ -64,13 +54,16 @@ class _TextFieldWidget extends StatelessWidget {
 
 class SettingsWidgetModel extends ChangeNotifier {
   String? _appBarData;
+  String? _newAppBarData;
 
   String get appBarData => _appBarData ?? "Welcome to ShrekTestApp!";
-  set appBarData(String value) => _appBarData = value;
+  set appBarData(String value) => _newAppBarData = value;
 
   void setAppBarText() {
     if (_appBarData == null || _appBarData!.isEmpty) {
       _appBarData = "Welcome to ShrekTestApp!";
+    } else {
+      _appBarData = _newAppBarData;
     }
     notifyListeners();
   }

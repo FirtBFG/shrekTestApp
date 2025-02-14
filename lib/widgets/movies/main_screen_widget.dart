@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shrek_app/main.dart';
 import 'package:shrek_app/resources/design.dart';
 import 'package:shrek_app/resources/resources.dart';
 
@@ -113,37 +114,38 @@ class _EpisodesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.separated(
-        padding: EdgeInsets.only(top: 80),
-        itemCount: shrekInfoList.length,
-        separatorBuilder: (BuildContext context, int index) =>
-            const SizedBox.shrink(),
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            contentPadding: EdgeInsets.zero,
-            title: ElevatedButton(
-              style: design.movieButtonStyle,
-              onPressed: () {},
-              child: Row(
-                children: [
-                  Image(
-                    image: AssetImage(shrekInfoList[index]['image'].toString()),
-                    height: 200,
+    //final db = DBWidgetModel();
+    return ListView.separated(
+      padding: const EdgeInsets.only(top: 80),
+      itemCount: shrekInfoList.length,
+      separatorBuilder: (BuildContext context, int index) =>
+          const SizedBox.shrink(),
+      itemBuilder: (BuildContext context, int index) {
+        return ListTile(
+          contentPadding: EdgeInsets.zero,
+          title: ElevatedButton(
+            style: design.movieButtonStyle,
+            onPressed: () {
+              //db.doSome();
+            },
+            child: Row(
+              children: [
+                Image(
+                  image: AssetImage(shrekInfoList[index]['image'].toString()),
+                  height: 200,
+                ),
+                Expanded(
+                  child: _ListOfMovieWidget(
+                    shrekInfoList: shrekInfoList,
+                    index: index,
                   ),
-                  Expanded(
-                    child: _ListOfMovieWidget(
-                      shrekInfoList: shrekInfoList,
-                      index: index,
-                    ),
-                  ),
-                  const Icon(Icons.chevron_right_outlined),
-                ],
-              ),
+                ),
+                const Icon(Icons.chevron_right_outlined),
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

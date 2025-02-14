@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:shrek_app/main.dart';
 import 'package:shrek_app/resources/design.dart';
 
-class AuthWidget extends StatefulWidget {
-  const AuthWidget({super.key});
+class RegWidget extends StatefulWidget {
+  const RegWidget({super.key});
 
   @override
-  State<AuthWidget> createState() => _AuthWidgetState();
+  State<RegWidget> createState() => _RegWidgetState();
 }
 
-class _AuthWidgetState extends State<AuthWidget> {
+class _RegWidgetState extends State<RegWidget> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -57,17 +57,11 @@ class _LogPassWidgetState extends State<_LogPassWidget> {
   String? _errorMessage;
   final db = DBWidgetModel();
 
-  Future<void> _auth() async {
-    final ans = await db.auth(_login.text, _password.text);
-    if (ans == true) {
-      _errorMessage = null;
-      final navigator = Navigator.of(context);
-      navigator.pushReplacementNamed('/main');
-    } else {
-      _errorMessage = "Неверный логин или пароль!";
-    }
-    // ignore: avoid_print
-    print(_errorMessage);
+  void _reg() {
+    _errorMessage = null;
+    final navigator = Navigator.of(context);
+    db.reg(_login.text, _password.text);
+    navigator.pushNamed('/auth');
     setState(() {});
   }
 
@@ -93,8 +87,8 @@ class _LogPassWidgetState extends State<_LogPassWidget> {
             alignment: Alignment.bottomRight,
             child: ElevatedButton(
               style: design.buttonStyle,
-              onPressed: _auth,
-              child: const Text("Auth"),
+              onPressed: _reg,
+              child: const Text("Reg"),
             ),
           ),
           if (_errorMessage != null)

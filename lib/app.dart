@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shrek_app/widgets/auth/auth_widget.dart';
+import 'package:shrek_app/widgets/auth/reg_widget.dart';
 import 'package:shrek_app/widgets/navigation/navigation_widget.dart';
 import 'package:shrek_app/widgets/settings/settings_widget.dart';
 
@@ -16,8 +17,9 @@ class App extends StatelessWidget {
         routes: {
           '/auth': (context) => AuthWidget(),
           '/main': (context) => NavigationWidget(),
+          '/reg': (context) => RegWidget(),
         },
-        initialRoute: '/auth',
+        initialRoute: '/reg',
       ),
     );
   }
