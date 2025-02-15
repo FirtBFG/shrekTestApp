@@ -12,11 +12,11 @@ class NavigationWidget extends StatefulWidget {
 }
 
 class _NavigationWidgetState extends State<NavigationWidget> {
-  List<Widget> _pagesList = [
-    MainScreenWidget(),
-    RandomQuoteWidget(),
-    FindQuoteWidget(),
-    SettingsWidget(),
+  final List<Widget> _pagesList = [
+    const MainScreenWidget(),
+    const RandomQuoteWidget(),
+    const FindQuoteWidget(),
+    const SettingsWidget(),
   ];
   int _selectedIndex = 0;
 
@@ -43,8 +43,8 @@ class _NavigationWidgetState extends State<NavigationWidget> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
         currentIndex: _selectedIndex,
-        selectedItemColor: Color(0xFFa98467),
-        unselectedItemColor: Color(0xFFa98467),
+        selectedItemColor: const Color(0xFFa98467),
+        unselectedItemColor: const Color(0xFFa98467),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.video_collection_sharp),

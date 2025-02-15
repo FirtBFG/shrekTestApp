@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shrek_app/domain/api_clients/api_client.dart';
 import 'package:shrek_app/widgets/auth/auth_widget.dart';
 import 'package:shrek_app/widgets/auth/reg_widget.dart';
 import 'package:shrek_app/widgets/navigation/navigation_widget.dart';
@@ -11,6 +12,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ApiClient().getFilms();
     return SettingsWidgetProvider(
       model: model,
       child: MaterialApp(
